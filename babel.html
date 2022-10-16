@@ -1,0 +1,30 @@
+우선 바벨은 공식 문서에 따르면 아래와 같다
+
+Babel is a JavaScript compiler.
+
+Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
+
+바벨은 자바스크립트 컴파일러란다. 주로 ECMAScript 2015+ 이후의 코드들을 이전 혹은 오래된 브라우저(ex internet exploer, R.I.P. 1995 ~ 2022)에도 돌아가게끔 만들어주는 역할을 하는 것이다.
+
+예들 들자면 아래와 같은 코드를 컴파일 해준다.
+
+// Babel Input: ES2015 arrow function
+[1, 2, 3].map(n => n + 1);
+
+// Babel Output: ES5 equivalent
+[1, 2, 3].map(function(n) {
+  return n + 1;
+});
+그러면 어떻게 쓰냐??
+
+babel.config., .babelrc. .babelrc... 중에 하나를 만들어서 쓰면 된다. 각 파일 이름의 차이점은 첫번째는 Project-wide configuration 이며 그 후의 것들은 File-relative configuration 이라고 공식 문서에 나와있다.
+
+사용법은 공식 문서를 참고하자... 지금은 사용법 보다는 바벨이 무엇인지 아는 것이 더 중요하니까.
+
+그러나 바벨은 legacy 코드를 변환해 주는 것에서 그치는 것이 아니라 typescript나 jsx와 같은 것들을 자바스크립트로 변환해 준다.
+
+결국 바벨이란
+1) es6 이후의 문법들을 es5이전의 문법들로 변환해주고
+2) 오래된 브라우저에서 코드가 정상적으로 작동할 수 있게 (polyfill) 해주고
+3) typescript, jsx등을 javascript로 컴파일 해주는 것
+이라고 요약할 수 있겠다.
