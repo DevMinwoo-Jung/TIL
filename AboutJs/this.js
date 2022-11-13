@@ -109,4 +109,4 @@ arrowFun();
 const dinner = new Chicken('또래오래', '양념치킨', 33434);
 const dinner2 = new Chicken('후참잘', '후라이드 치킨', 334324);
 dinner.consoledotLog(); // 생성자 내부의 this
-dinner2.consoledotLog();
+dinner2.consoledotLog(); 
