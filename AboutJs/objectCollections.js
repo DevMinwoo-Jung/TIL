@@ -167,3 +167,112 @@ console.log(updatedSinger2);
 // rank:""
 // song:""
 // year:""
+
+
+// 맵으로 키-값 데이터를 갱신하라
+// 1) 키-값 이 자주 추가되는 경우 2) 키가 문자열이 아닐 경우
+
+const jeans = [
+    {
+        이름: '청바지',
+        길이: '10부',
+        브랜드: '시장',
+        색상: '찐청',
+    },
+    {
+        이름: '면바지',
+        길이: '5부',
+        브랜드: '시장',
+        색상: '누런색',
+    },
+    {
+        이름: '청바지',
+        길이: '7부',
+        브랜드: '집앞',
+        색상: '흐연파란색',
+    },
+];
+
+let filters = new Map();
+
+filters.set('이름', '청바지')
+        .set('길이', '5부')
+        .set('색상', '흐연파란색')
+        .delete('색상'); // 지울 때
+filters.get('이름'); // 이름 => 청바지
+filters.get('길이');
+// 체이닝도 가능!
+console.log(filters);
+
+filters.clear(); // delete all
+console.log(filters);
+
+// map 적용 전
+function addFilters(filters, key, value) {
+    filters[key] = value;
+}
+  
+function deleteFilters(filters, key) {
+    delete filters[key];
+}
+  
+function clearFilters(filters) {
+    filters = {};
+    return filters;
+}
+
+// map 적용 후
+const petFilters = new Map();
+function addFilters(filters, key, value) {
+  filters.set(key, value); // 맵 인스턴스의 매소드 사용
+}
+
+function deleteFilters(filters, key) {
+  filters.delete(key); // 인스턴스 생성 후 언어 수준의 연산자 안해도 됨
+}
+
+function clearFilters(filters) {
+  filters.clear(); // 새로운 인스턴스 생성 안해도 됨
+}
+
+// 코드가 깔끔해지고 무엇을 하는지 명확해짐!!
+
+// 맵과 펼침 연산자로 키-값 데이터를 순회하라
+// 객체는 순회하기 번거롭다 for in을 써도 key값만 순회할 수 있다.
+
+const objfilters = {
+    color: 'black',
+    breed: 'labrador',
+  };
+  
+  function getAppliedFilters(filters) {
+    const keys = Object.keys(filters);
+    console.log(keys); // [color, bread]
+    const applied = [];
+    for (const key of keys) {
+      applied.push(`${key}:${filters[key]}`);
+    }
+    return `Your filters are: ${applied.join(', ')}.`;
+  }
+
+getAppliedFilters(objfilters); 
+// 배열에 key를 넣고 넣은 key를 for문으로 순회한다. for문을 돌며 객체를 참조해 값을 꺼낸다.
+// 그리고 이는 순서를 보장하지 않는다.
+
+const objfilters2 = {
+    color: 'black',
+    breed: 'labrador',
+  };
+  
+  function getAppliedFilters(filters) {
+    const keys = Object.keys(filters);
+    keys.sort();
+    console.log(keys); // [color, bread]
+    const applied = [];
+    for (const key of keys) {
+      applied.push(`${key}:${filters[key]}`);
+    }
+    return `Your filters are: ${applied.join(', ')}.`;
+  }
+
+  // 순서를 보장하려면 sort까지 써야함;
