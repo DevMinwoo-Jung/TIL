@@ -96,6 +96,74 @@ console.log(chicken); // name.brand = '또래오래'
 // 원본 객체를 조작하지 않았다!
 
 
+// 객체 펼침 연산자로 정보를 갱신하라 ***** react에서 많이 보던 것!!
+
+const menu = {
+    title: '제육볶음',
+    taste: '마시쩡'
+};
+
+const newMenu = {
+    ...menu, title: '치킨',
+}
+
+console.log(newMenu); // {title: '치킨', taste: '마시쩡'}taste: "마시쩡"title: "치킨"[[Prototype]]: Object
+console.log(menu); // {title: '제육볶음', taste: '마시쩡'}taste: "마시쩡"title: "제육볶음"[[Prototype]]: Object
+// 리액트에서 많이 본거자너~
+
+// 배열 펼침 연산자와 다른 점은 같은 키에 다른 값을 넣으면 무조건 마지막에 넣은 값을 가져온다는 것 -> ?
 
 
+const singer = {
+    song: '',
+    album: '',
+    year: '',
+    rank: '',
+};
 
+const castleBalla = {
+    song: '니가없는나와바리',
+    year: '2008',
+};
+
+const updatedSinger = {...singer, ...castleBalla};
+
+console.log(updatedSinger);
+console.log(singer);
+
+// {song: '니가없는나와바리', album: '', year: '2008', rank: ''} updatedSinger
+// objectCollections.js:132 {song: '', album: '', year: '', rank: ''}
+
+// 중첩된건 어떨게 쓸까 ??
+// 이렇게!
+
+const singer2 = {
+    song: '',
+    album: {
+        name: '',
+        title: '',
+    },
+    year: '',
+    rank: '',
+};
+
+const bestAlbum = {
+    name: '넌 감동이었어',
+    title: '모르겠음;',
+};
+
+const updatedSinger2 = {
+    ...singer2,
+    album: {...bestAlbum}
+};
+
+console.log(updatedSinger2);
+
+// redux에서 많이 보던 것
+// album{
+//     name:"넌 감동이었어"
+//     title:"모르겠음;"
+// } 
+// rank:""
+// song:""
+// year:""
