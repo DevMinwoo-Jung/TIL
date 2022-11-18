@@ -9,11 +9,14 @@ var varVar = 11;
 function thisFunc() {
   console.log(this); // window
   console.log(this.varVar); // 11 // strict mode면 undefined
-  console.log(this.constVar); // undefined
+  console.log(this.constVar); // undefined const는 전역변수가 아니니까
 }
 
 thisFunc(); // window
 
+function callVar() {
+  console.log(this.call);
+}
 
 const Person = {
   call: '야호',
@@ -21,20 +24,23 @@ const Person = {
     console.log(this.call); // 함수 내부
     console.log(this.varVar); // 그래서 전역변수 varVar는 안됨
   },
-  callVar, // key value 같으면 생략 가능
+  callVar
 }
 
+console.log('-------callVar')
+callVar();  // undefined
+
+console.log('-----objFunc');
 Person.objFunc();
 Person.callVar(); // 야호
 
-function callVar() {
-  console.log(this.call); // undefined
-}
+
 
 const Foo = {
   callVar,
 }
 
+console.log('------Foo.callVar')
 Foo.callVar(); // undefined
 
 // 메서드 내 this는 자신을 호출한 객체로 간다.
@@ -61,7 +67,7 @@ class Chicken {
   }
 }
 
-// 생성자 내부에서는 생성하는 객체
+// 생성자 내부에서는 생성하는 객체의 this
 const ttorae = new Chicken('또래오래');
 const bbq = new Chicken('비비큐');
 
@@ -80,18 +86,25 @@ const obj2 = {
 };
 
 callApllyBind.call(obj); // minwoo
-callApllyBind.call(obj2); // 여기서
-callApllyBind.apply(obj); // 여기서
-callApllyBind.apply(obj2); // 여기서
+callApllyBind.call(obj2); // 여기에
+callApllyBind.apply(obj); // minwoo
+callApllyBind.apply(obj2); // 여기에
 // call or apply를 한 객체로 간다.
 
 let arrowFun = () => {
   this.name = 'minwoo';
   this.age = 30;
   console.log(this.name, this.age);
-} // 함수 내부라 minwoo, 30
+  this.innerFunc = () => {
+    this.name = '민우';
+    this.age = '31';
+    console.log(this.name, this.age);
+  }
+  console.log(innerFunc())
+} // 자신을 호출한 함수의 가장 가까운 this를 가르킨다.
+// 그래서 innerFunc안에는 민우, 31이고 그 밖은 minwoo, 30인겨
 
-arrowFun(); 
+arrowFun();
 
 const dinner = new Chicken('또래오래', '양념치킨', 33434);
 const dinner2 = new Chicken('후참잘', '후라이드 치킨', 334324);
