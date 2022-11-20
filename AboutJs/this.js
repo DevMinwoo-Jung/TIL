@@ -50,9 +50,14 @@ button.addEventListener('click', function () {
 // 이벤트 리스너는 이벤트를 받는 html 요소
 
 class Chicken {
-  constructor(brand) {
+  constructor(brand, name, age) {
     this.brand = brand;
+    this.name = name;
+    this.age = age;
     console.log(this.brand);
+  }
+  consoledotLog = () => {
+    console.log(this);
   }
 }
 
@@ -79,3 +84,16 @@ callApllyBind.call(obj2); // 여기서
 callApllyBind.apply(obj); // 여기서
 callApllyBind.apply(obj2); // 여기서
 // call or apply를 한 객체로 간다.
+
+let arrowFun = () => {
+  this.name = 'minwoo';
+  this.age = 30;
+  console.log(this.name, this.age);
+} // 함수 내부라 minwoo, 30
+
+arrowFun(); 
+
+const dinner = new Chicken('또래오래', '양념치킨', 33434);
+const dinner2 = new Chicken('후참잘', '후라이드 치킨', 334324);
+dinner.consoledotLog(); // 생성자 내부의 this
+dinner2.consoledotLog();
