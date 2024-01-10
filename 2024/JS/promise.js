@@ -70,7 +70,7 @@ exampleObj.prototype.sayMyName = function(){
 
 // exampleObj.prototype.sayMyName =()=>{
 //     console.log(this) // window
-//     console.log(this.name)
+//     console.log(this.name)  
 // }
 
 exampleObjTest.sayMyName();
