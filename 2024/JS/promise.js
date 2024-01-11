@@ -68,9 +68,4 @@ exampleObj.prototype.sayMyName = function(){
     console.log(this.name)
 }
 
-// exampleObj.prototype.sayMyName =()=>{
-//     console.log(this) // window
-//     console.log(this.name)  
-// }
-
 exampleObjTest.sayMyName();
